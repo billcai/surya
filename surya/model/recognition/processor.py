@@ -194,7 +194,7 @@ class SuryaImageProcessor(DonutImageProcessor):
 
 class SuryaProcessor(DonutProcessor):
     def __init__(self, image_processor=None, tokenizer=None, train=False, **kwargs):
-        image_processor = SuryaImageProcessor.from_pretrained(settings.RECOGNITION_MODEL_CHECKPOINT)
+        image_processor = SuryaImageProcessor.from_pretrained(settings.RECOGNITION_MODEL_CHECKPOINT,local_files_only=True)
         tokenizer = Byt5LangTokenizer()
         if image_processor is None:
             raise ValueError("You need to specify an `image_processor`.")

@@ -7,7 +7,7 @@ from surya.settings import settings
 
 
 def load_model(checkpoint=settings.RECOGNITION_MODEL_CHECKPOINT, device=settings.TORCH_DEVICE_MODEL, dtype=settings.MODEL_DTYPE, langs: Optional[List[int]] = None):
-    config = VisionEncoderDecoderConfig.from_pretrained(checkpoint)
+    config = VisionEncoderDecoderConfig.from_pretrained(checkpoint,local_files_only=True)
 
     decoder_config = vars(config.decoder)
     decoder = MBartMoEConfig(**decoder_config)
@@ -22,7 +22,7 @@ def load_model(checkpoint=settings.RECOGNITION_MODEL_CHECKPOINT, device=settings
     AutoModelForCausalLM.register(MBartMoEConfig, MBartMoE)
     AutoModel.register(VariableDonutSwinConfig, VariableDonutSwinModel)
 
-    model = LangVisionEncoderDecoderModel.from_pretrained(checkpoint, config=config, torch_dtype=dtype)
+    model = LangVisionEncoderDecoderModel.from_pretrained(checkpoint, config=config, torch_dtype=dtype, local_files_only=True)
     assert isinstance(model.decoder, MBartMoE)
     assert isinstance(model.encoder, VariableDonutSwinModel)
 
