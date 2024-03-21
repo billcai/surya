@@ -43,7 +43,7 @@ class Settings(BaseSettings):
         return "cpu"
 
     # Text detection
-    DETECTOR_BATCH_SIZE: Optional[int] = None # Defaults to 2 for CPU, 32 otherwise
+    DETECTOR_BATCH_SIZE: Optional[int] = 2 # Defaults to 2 for CPU, 32 otherwise
     DETECTOR_MODEL_CHECKPOINT: str = "vikp/surya_det"
     DETECTOR_BENCH_DATASET_NAME: str = "vikp/doclaynet_bench"
     DETECTOR_IMAGE_CHUNK_HEIGHT: int = 1280 # Height at which to slice images vertically
@@ -53,7 +53,7 @@ class Settings(BaseSettings):
     # Text recognition
     RECOGNITION_MODEL_CHECKPOINT: str = "vikp/surya_rec"
     RECOGNITION_MAX_TOKENS: int = 160
-    RECOGNITION_BATCH_SIZE: Optional[int] = None # Defaults to 8 for CPU/MPS, 256 otherwise
+    RECOGNITION_BATCH_SIZE: Optional[int] = 4 # Defaults to 8 for CPU/MPS, 256 otherwise
     RECOGNITION_IMAGE_SIZE: Dict = {"height": 196, "width": 896}
     RECOGNITION_RENDER_FONT: str = os.path.join(FONT_DIR, "GoNotoKurrent-Regular.ttf")
     RECOGNITION_FONT_DL_PATH: str = "https://github.com/satbyy/go-noto-universal/releases/download/v7.0/GoNotoKurrent-Regular.ttf"
